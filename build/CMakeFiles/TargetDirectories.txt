@@ -1,0 +1,3 @@
+C:/Personal Programs/CardWar/build/CMakeFiles/CW.dir
+C:/Personal Programs/CardWar/build/CMakeFiles/ALL_BUILD.dir
+C:/Personal Programs/CardWar/build/CMakeFiles/ZERO_CHECK.dir

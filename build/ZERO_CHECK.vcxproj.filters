@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Personal Programs\CardWar\build\CMakeFiles\fc8be6959ad19fdb9de34abb5e61827b\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{63FAFB82-7432-3BA4-84FF-08DDDB7687C9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
