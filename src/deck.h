@@ -3,7 +3,10 @@
 
 #include "card.h"
 #include <vector>
+#include <random>
+
 using std::vector;
+using std::cout;
 
 
 class deck {
@@ -35,9 +38,47 @@ class deck {
     // return number of cards in deck
     int size () {return cards.size();}
 
+    // randomize the order of the cards in the deck
+    void shuffle() {
+        int num_to_sample = cards.size();
+        card c;
+        while (num_to_sample > 1) { // do not need to sample final time
+            int index = cards.size() - num_to_sample;
+            double d_s = num_to_sample * (std::rand() / (RAND_MAX + 1.0));
+            int s = index + d_s;
+            // cout << cards[index] << " - " << cards[s] << "\n"; 
+            if (index != s) {
+                c = cards[index];
+                cards[index] = cards[s];
+                cards[s] = c;
+            }
+            // cout << cards[index] << " - " << cards[s] << "\n\n"; 
+            // cout << index << " swaps with " << s << " (" << d_s << ", " << sample << ")" << "\n";
+            num_to_sample--;
+        }
+    }
+
+    // returns a new deck consisting of n cards from the top/bottom of the deck
+    // removing them from the original deck
+    deck& split(int n) {
+
+    }
+
+    friend std::ostream& operator<<(std::ostream& out, const deck& d);
+
     private:
     // deck is represented from bottom to top like a vector implemented queue
     vector<card> cards;
 };
+
+std::ostream& operator<<(std::ostream& out, const deck& d)
+{
+    int card_num = 1;
+    for (auto c : d.cards) {
+        out << card_num << ". " << c << "\n";
+        card_num++;
+    }
+    return out;
+}
 
 #endif
