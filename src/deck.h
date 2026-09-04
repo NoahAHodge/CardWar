@@ -5,15 +5,26 @@
 #include <vector>
 using std::vector;
 
+
 class deck {
     public:
     deck() {
         cards = vector<card>();
     }
 
+    deck(int num_face, int num_suit) {
+        for (int f = 2; f <= num_face + 2; f++) {
+            for (int s = 0; s < num_suit; s++) {
+                cards.push_back(card(f, s));
+            }
+        }
+    }
+
     // pull a new card from the top of the deck
     card& pull() {
-        return cards.pop_back();
+        card res = cards[cards.size() - 1];
+        cards.pop_back();
+        return res;
     }
 
     // add a pool of won cards to the deck
