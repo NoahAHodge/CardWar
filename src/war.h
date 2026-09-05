@@ -30,36 +30,34 @@ class war {
     }
 
     void run_round() {
-        int p_num = 1;
         card c;
         int highest = 0;
-        int winner = 0; // code for no winner
+        int winner = -1; // code for no winner
         bool tie = false;
-        for (auto player : player_decks) {
-            if (player.size() > 0){
-                c = player.pull(); 
+        for (int p = 0; p < player_decks.size(); p++) {
+            if (player_decks[p].size() > 0){
+                c = player_decks[p].pull(); 
                 pool.push_back(c); // note - adds cards in order at time added to pool
                 // ex) player 1, 2, ... card 1, player 1, 2, ... card 2, ...
-                cout << "Player " << p_num << " pulls " << c << "\n";
+                cout << "Player " << p + 1 << " pulls " << c << "\n";
                 if (c.getFace() > highest) {
                     // found new highest
                     highest = c.getFace();
-                    winner = p_num;
+                    winner = p;
                 } else if (c.getFace() == highest) {
-                    winner = -1; // have a tie
+                    winner = -2; // have a tie
                 }
-                p_num++;
             } 
         }
-        if (winner == 0) {
+        if (winner == -1) {
             cout << "Error: No Cards Played\n";
-        } else if (winner == -1) {
+        } else if (winner == -2) {
             cout << "Tie! Go to War!"; // tied players can lose to a 3rd party
             // go_To_War();
         } else {
-            cout << "Player " << winner << " wins round " << round_num << ".\n\n";
-            player_decks[winner-1].add_cards(pool);
-            if (player_decks[winner-1].size() == 52) 
+            cout << "Player " << winner+1 << " wins round " << round_num << ".\n\n";
+            player_decks[winner].add_cards(pool);
+            if (player_decks[winner].size() == 52) 
                 finished = true;
             pool.clear();
         }
@@ -68,7 +66,7 @@ class war {
     war() {
         // create and shuffle deck
         deck main_deck = deck(num_faces, num_suits);
-        cout << main_deck;
+        // cout << main_deck;
         main_deck.shuffle();
 
         // deal to players
@@ -88,6 +86,10 @@ class war {
         while (round_num <= 1 && !finished) {
             cout << "Round " << round_num << "\n";
             run_round();
+            for (int i = 0; i < player_decks.size(); i++) {
+                cout << "Player " << i;
+                cout << player_decks[i];
+            }
             round_num++;
         }
     }

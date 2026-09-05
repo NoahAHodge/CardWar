@@ -25,8 +25,10 @@ class deck {
 
     // pull a new card from the top of the deck
     card& pull() {
+        cout << "before pull: " << cards.size() << "\n";
         card res = cards[cards.size() - 1];
         cards.pop_back();
+        cout << "after pull: " << cards.size() << "\n";
         return res;
     }
 
