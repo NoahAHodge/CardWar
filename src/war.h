@@ -12,17 +12,20 @@ const int num_suits = 4;
 const int num_faces = deck_size/num_suits;
 const int num_players = 4;
 const bool on_interact = false;
-const int max_rounds = 10;
+const int max_rounds = 20;
 const int war_cards = 3;
 
 class war {
     public:
 
     void go_To_War() {
-        for (auto player : player_decks) {
+        for (int p = 0; p < player_decks.size(); p++) {
             for (int i = 0; i < war_cards; i++) {
-                if (player.size() > 0){
-                    pool.push_back(player.pull());
+                if (player_decks[p].size() > 0){
+                    cout << "war pool added: " << player_decks[p] << "\n";
+                    pool.push_back(player_decks[p].pull());
+                    cout << "war pool added: " << pool[pool.size()-1] << "\n";
+
                 } 
             }
         }
@@ -52,14 +55,28 @@ class war {
         if (winner == -1) {
             cout << "Error: No Cards Played\n";
         } else if (winner == -2) {
-            cout << "Tie! Go to War!"; // tied players can lose to a 3rd party
-            // go_To_War();
+            cout << "Tie! Go to War!\n"; // tied players can lose to a 3rd party
+            go_To_War();
         } else {
             cout << "Player " << winner+1 << " wins round " << round_num << ".\n\n";
+            if (round_num >= 13) {
+                cout << "Pool size "<<  pool.size() << "\n";
+                for (auto j : pool) {
+                    cout << j << "\n";
+                }
+                cout << "\n";
+            }
             player_decks[winner].add_cards(pool);
             if (player_decks[winner].size() == 52) 
                 finished = true;
             pool.clear();
+        }
+    }
+
+    void print_players() {
+        for (int i = 0; i < player_decks.size(); i++) {
+            cout << "Player " << i+1;
+            cout << player_decks[i];
         }
     }
 
@@ -83,13 +100,10 @@ class war {
         // run rounds
         round_num = 1;
         finished = false;
-        while (round_num <= 1 && !finished) {
+        while (round_num <= max_rounds && !finished) {
             cout << "Round " << round_num << "\n";
             run_round();
-            for (int i = 0; i < player_decks.size(); i++) {
-                cout << "Player " << i;
-                cout << player_decks[i];
-            }
+            print_players();
             round_num++;
         }
     }
