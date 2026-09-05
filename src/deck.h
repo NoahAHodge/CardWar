@@ -78,6 +78,7 @@ class deck {
 
 std::ostream& operator<<(std::ostream& out, const deck& d)
 {
+    out << "\nSize of deck: " << d.cards.size() << "\n";
     int card_num = 1;
     for (auto c : d.cards) {
         out << card_num << ". " << c << "\n";
