@@ -48,15 +48,16 @@ class war {
                 } else if (c.getFace() == highest) {
                     winner = -1; // have a tie
                 }
+                p_num++;
             } 
         }
-        if (winner = 0) {
+        if (winner == 0) {
             cout << "Error: No Cards Played\n";
-        } else if (winner = -1) {
+        } else if (winner == -1) {
             cout << "Tie! Go to War!"; // tied players can lose to a 3rd party
-            go_To_War();
+            // go_To_War();
         } else {
-            cout << "Player " << winner << " wins round" << round_num << ".\n\n";
+            cout << "Player " << winner << " wins round " << round_num << ".\n\n";
             player_decks[winner-1].add_cards(pool);
             if (player_decks[winner-1].size() == 52) 
                 finished = true;
@@ -84,10 +85,11 @@ class war {
         // run rounds
         round_num = 1;
         finished = false;
-        // while (round_num <= max_rounds && !finished) {
-        //     cout << "Round " << round_num << "\n";
-        //     run_round();
-        // }
+        while (round_num <= 1 && !finished) {
+            cout << "Round " << round_num << "\n";
+            run_round();
+            round_num++;
+        }
     }
 
     private:
