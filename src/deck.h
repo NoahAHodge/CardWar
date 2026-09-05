@@ -58,10 +58,15 @@ class deck {
         }
     }
 
-    // returns a new deck consisting of n cards from the top/bottom of the deck
+    // returns a new deck consisting of n cards from the top??? of the deck
     // removing them from the original deck
-    deck& split(int n) {
-
+    deck split(int n) {
+        vector<card> top_split(std::make_move_iterator(cards.begin() + n), 
+            std::make_move_iterator(cards.end()));
+        cards.erase(cards.begin() + n, cards.end());
+        deck res = deck();
+        res.cards = top_split;
+        return res;
     }
 
     friend std::ostream& operator<<(std::ostream& out, const deck& d);

@@ -13,10 +13,25 @@ int main() {
 
     int num_cards = d.size();
     cout << "Size of deck: " << num_cards << "\n";
-    cout << "Deck Before Shuffle: \n";
+    cout << "Deck Before Split: \n";
     cout << d;
-    d.shuffle();
-    cout << "\nDeck After Shuffle: \n";
+
+    deck d2 = d.split(26);
+    cout << "\nSize of deck: " << d.size() << "\n";
+    cout << "Original Deck After Split: \n";
     cout << d;
-    cout << "Size of deck: " << d.size() << "\n";
+
+    cout << "\nSize of new deck: " << d2.size() << "\n";
+    cout << "New Deck After Split: \n";
+    cout << d2;
+
+    deck d3 = d2.split(13);
+
+    cout << "\nSize of new deck: " << d2.size() << "\n";
+    cout << "New Deck After Split: \n";
+    cout << d2;
+
+    cout << "\nSize of new new deck: " << d3.size() << "\n";
+    cout << "New New Deck After Split: \n";
+    cout << d3;
 }
