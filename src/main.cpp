@@ -20,6 +20,7 @@ int main() {
     cout << "\nSize of deck: " << d.size() << "\n";
     cout << "Original Deck After Split: \n";
     cout << d;
+    cout << d.pull() << "\n";
 
     cout << "\nSize of new deck: " << d2.size() << "\n";
     cout << "New Deck After Split: \n";
@@ -30,8 +31,10 @@ int main() {
     cout << "\nSize of new deck: " << d2.size() << "\n";
     cout << "New Deck After Split: \n";
     cout << d2;
+    cout << d2.pull() << "\n";
 
     cout << "\nSize of new new deck: " << d3.size() << "\n";
     cout << "New New Deck After Split: \n";
     cout << d3;
+    cout << d3.pull() << "\n";
 }
