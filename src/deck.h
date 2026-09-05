@@ -16,7 +16,7 @@ class deck {
     }
 
     deck(int num_face, int num_suit) {
-        for (int f = 2; f <= num_face + 2; f++) {
+        for (int f = 2; f < num_face + 2; f++) {
             for (int s = 0; s < num_suit; s++) {
                 cards.push_back(card(f, s));
             }
@@ -61,9 +61,12 @@ class deck {
     // returns a new deck consisting of n cards from the top??? of the deck
     // removing them from the original deck
     deck split(int n) {
-        vector<card> top_split(std::make_move_iterator(cards.begin() + n), 
+        cout << "take top " << n << "\n";
+        vector<card> top_split(std::make_move_iterator(cards.end() - n), 
             std::make_move_iterator(cards.end()));
-        cards.erase(cards.begin() + n, cards.end());
+        cout << "top size " << top_split.size() << "\n";
+        cards.erase(cards.end() - n, cards.end());
+        cout << "main size " << cards.size() << "\n";
         deck res = deck();
         res.cards = top_split;
         return res;

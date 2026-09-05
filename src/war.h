@@ -10,9 +10,9 @@ using std::cout;
 const int deck_size = 52;
 const int num_suits = 4;
 const int num_faces = deck_size/num_suits;
-const int num_players = 2;
+const int num_players = 4;
 const bool on_interact = false;
-const int max_rounds = 1000;
+const int max_rounds = 10;
 const int war_cards = 3;
 
 class war {
@@ -67,20 +67,27 @@ class war {
     war() {
         // create and shuffle deck
         deck main_deck = deck(num_faces, num_suits);
-        main_deck.shuffle();
+        cout << main_deck;
+        // main_deck.shuffle();
 
         // deal to players
         for (int num_decks = 1; num_decks < num_players; num_decks++) {
             player_decks.push_back(main_deck.split(deck_size/num_players));
+            cout << "Player " << num_decks;
+            cout << player_decks[num_decks-1] << "\n";
         }
+        player_decks.push_back(main_deck);
+        cout << "Player " << num_players;
+        cout << player_decks[num_players-1] << "\n";
+
 
         // run rounds
         round_num = 1;
         finished = false;
-        while (round_num <= max_rounds && !finished) {
-            cout << "Round " << round_num << "\n";
-            run_round();
-        }
+        // while (round_num <= max_rounds && !finished) {
+        //     cout << "Round " << round_num << "\n";
+        //     run_round();
+        // }
 
     }
 
