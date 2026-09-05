@@ -68,17 +68,17 @@ class war {
         // create and shuffle deck
         deck main_deck = deck(num_faces, num_suits);
         cout << main_deck;
-        // main_deck.shuffle();
+        main_deck.shuffle();
 
         // deal to players
         for (int num_decks = 1; num_decks < num_players; num_decks++) {
             player_decks.push_back(main_deck.split(deck_size/num_players));
             cout << "Player " << num_decks;
-            cout << player_decks[num_decks-1] << "\n";
+            cout << player_decks[num_decks-1];
         }
         player_decks.push_back(main_deck);
         cout << "Player " << num_players;
-        cout << player_decks[num_players-1] << "\n";
+        cout << player_decks[num_players-1];
 
 
         // run rounds
@@ -88,7 +88,6 @@ class war {
         //     cout << "Round " << round_num << "\n";
         //     run_round();
         // }
-
     }
 
     private:

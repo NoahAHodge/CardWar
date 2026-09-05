@@ -61,15 +61,24 @@ class deck {
     // returns a new deck consisting of n cards from the top??? of the deck
     // removing them from the original deck
     deck split(int n) {
-        cout << "take top " << n << "\n";
+        // cout << "take top " << n << "\n";
         vector<card> top_split(std::make_move_iterator(cards.end() - n), 
             std::make_move_iterator(cards.end()));
-        cout << "top size " << top_split.size() << "\n";
+        // cout << "top size " << top_split.size() << "\n";
         cards.erase(cards.end() - n, cards.end());
-        cout << "main size " << cards.size() << "\n";
+        // cout << "main size " << cards.size() << "\n";
         deck res = deck();
         res.cards = top_split;
         return res;
+    }
+
+    // return the sum of all card vvalues in hand - treating face cards as having increasing value
+    int sum() const {
+        int s = 0;
+        for (auto card : cards) {
+            s += card.getFace();
+        }
+        return s;
     }
 
     friend std::ostream& operator<<(std::ostream& out, const deck& d);
@@ -82,12 +91,13 @@ class deck {
 std::ostream& operator<<(std::ostream& out, const deck& d)
 {
     out << "\nSize of deck: " << d.cards.size() << "\n";
+    out << "Sum of deck: " << d.sum() << "\n";
     int card_num = 1;
     for (auto c : d.cards) {
         out << card_num << ". " << c << "\n";
         card_num++;
     }
-    return out;
+    return out << "\n";
 }
 
 #endif
